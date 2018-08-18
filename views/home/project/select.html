@@ -79,11 +79,11 @@
                     <div class="panel-heading">
                     <span class="head-title">{{$project->title}}</span>
                         <span class="head-btn">
-                            <a class="fa hidden-xs fa-pencil" data-toggle="tooltip" data-placement="top" data-modal="#js_addProjectModal"data-height="250" data-title="编辑项目" data-src="{{url('update', ['id' => $project->encode_id])}}"></a>
+                            <a class="fa hidden-xs fa-pencil" data-toggle="tooltip" data-placement="top" data-modal="#js_popModal"data-height="250" data-title="编辑项目" data-src="{{url('update', ['id' => $project->encode_id])}}"></a>
 
-                            <a class="fa hidden-xs fa-trash-o" data-toggle="tooltip" data-placement="top" data-modal="#js_deleteProjectModal" data-height="230" data-title="删除项目" data-src="{{url('delete', ['id' => $project->encode_id])}}"></a>
+                            <a class="fa hidden-xs fa-trash-o" data-toggle="tooltip" data-placement="top" data-modal="#js_popModal" data-height="230" data-title="删除项目" data-src="{{url('delete', ['id' => $project->encode_id])}}"></a>
 
-                            <a class="fa hidden-xs fa-exchange" data-toggle="tooltip" data-placement="top" data-modal="#js_transferProjectModal" data-height="300" data-title="转让项目" data-src="{{url('transfer', ['id' => $project->encode_id])}}"></a>
+                            <a class="fa hidden-xs fa-exchange" data-toggle="tooltip" data-placement="top" data-modal="#js_popModal" data-height="300" data-title="转让项目" data-src="{{url('transfer', ['id' => $project->encode_id])}}"></a>
                         </span>
                     </div>
                     <div class="panel-body">
@@ -97,7 +97,7 @@
             </div>
             {{/foreach}}
 
-            <div class="col-lg-3 hidden-xs" data-modal="#js_addProjectModal" data-height="330" data-title="添加项目" data-src="{{url('home/project/create')}}">
+            <div class="col-lg-3 hidden-xs" data-modal="#js_popModal" data-height="330" data-title="添加项目" data-src="{{url('home/project/create')}}">
                 <div class="panel panel-default">
 
                     <div class="panel-body project-add">
@@ -126,15 +126,15 @@
                         <span class="head-title">{{$project->title}}</span>
                         <span class="head-btn">
                             {{if $project->hasRule('project', 'update')}}
-                            <a href="javascript:;" class="fa hidden-xs fa-pencil" data-toggle="tooltip" data-placement="top" data-modal="#js_addProjectModal" data-height="370" data-title="编辑项目" data-src="{{url('update', ['id' => $project->encode_id])}}"></a>
+                            <a href="javascript:;" class="fa hidden-xs fa-pencil" data-toggle="tooltip" data-placement="top" data-modal="#js_popModal" data-height="370" data-title="编辑项目" data-src="{{url('update', ['id' => $project->encode_id])}}"></a>
                             {{/if}}
 
                             {{if $project->hasRule('project', 'delete')}}
-                            <a href="javascript:;" class="fa hidden-xs fa-trash-o" data-toggle="tooltip" data-placement="top" data-modal="#js_deleteProjectModal" data-height="230" data-title="删除项目" data-src="{{url('delete', ['id' => $project->encode_id])}}"></a>
+                            <a href="javascript:;" class="fa hidden-xs fa-trash-o" data-toggle="tooltip" data-placement="top" data-modal="#js_popModal" data-height="230" data-title="删除项目" data-src="{{url('delete', ['id' => $project->encode_id])}}"></a>
                             {{/if}}
 
                             {{if $project->hasRule('project', 'transfer')}}
-                            <a href="javascript:;" class="fa hidden-xs fa-exchange" data-toggle="tooltip" data-placement="top" data-modal="#js_transferProjectModal" data-height="300" data-title="转让项目" data-src="{{url('transfer', ['id' => $project->encode_id])}}"></a>
+                            <a href="javascript:;" class="fa hidden-xs fa-exchange" data-toggle="tooltip" data-placement="top" data-modal="#js_popModal" data-height="300" data-title="转让项目" data-src="{{url('transfer', ['id' => $project->encode_id])}}"></a>
                             {{/if}}
 
                             <a href="javascript:;" class="fa hidden-xs fa-sign-out js_quitProject" data-url="{{url('home/member/remove', ['project_id' => $project->encode_id])}}"></a>
@@ -159,79 +159,6 @@
                     </div>
 
                 </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- 添加/编辑项目模态框 -->
-<div class="modal fade" id="js_addProjectModal" tabindex="1" role="dialog">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">编辑项目</h4>
-            </div>
-            <div class="modal-body">
-
-                <iframe scrolling="no" src=""></iframe>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary js_submit">确认</button>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- 删除项目模态框 -->
-<div class="modal fade" id="js_deleteProjectModal" tabindex="2" role="dialog">
-    <div class="modal-dialog" role="document">
-        <form role="form" action="" method="post">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">确定删除此项目吗？</h4>
-                </div>
-                <div class="modal-body">
-
-                    <iframe scrolling="no" src=""></iframe>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-danger js_submit">删除</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </form>
-    </div><!-- /.modal-dialog -->
-</div>
-
-<!-- 转让项目模态框 -->
-<div class="modal fade" id="js_transferProjectModal" tabindex="-9" role="dialog">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">转让项目</h4>
-            </div>
-            <div class="modal-body">
-
-                <iframe scrolling="no" src=""></iframe>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary js_submit">确认</button>
             </div>
 
         </div>

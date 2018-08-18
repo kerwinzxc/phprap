@@ -21,7 +21,8 @@ CREATE TABLE `doc_api` (
   `sort` int(10) NOT NULL COMMENT '接口排序',
   `creater_id` int(10) NOT NULL COMMENT '创建者id',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `encode_id` (`encode_id`),
   KEY `creater_id` (`creater_id`),
@@ -44,9 +45,10 @@ CREATE TABLE `doc_apply` (
   `project_id` int(10) NOT NULL COMMENT '项目id',
   `user_id` int(10) NOT NULL COMMENT '申请用户id',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '审核状态',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `checked_at` datetime DEFAULT NULL COMMENT '处理时间',
+
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`),
   KEY `user_id` (`user_id`)
@@ -60,8 +62,9 @@ CREATE TABLE `doc_config` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL COMMENT '配置类型',
   `content` text NOT NULL COMMENT '配置内容',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='配置表';
@@ -88,7 +91,8 @@ CREATE TABLE `doc_env` (
   `project_id` int(10) NOT NULL COMMENT '项目id',
   `creater_id` int(10) NOT NULL COMMENT '创建者id',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `encode_id` (`encode_id`),
   KEY `project_id` (`project_id`)
@@ -113,7 +117,8 @@ CREATE TABLE `doc_login_log` (
   `ip` varchar(50) NOT NULL COMMENT '登录ip',
   `location` varchar(255) NOT NULL DEFAULT '' COMMENT '登录地址',
   `created_at` datetime DEFAULT NULL COMMENT '登录时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='登录日志表';
@@ -142,7 +147,8 @@ CREATE TABLE `doc_member` (
   `member_rule` varchar(100) NOT NULL DEFAULT '' COMMENT '成员权限',
   `creater_id` int(10) NOT NULL COMMENT '创建者id',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `encode_id` (`encode_id`) USING BTREE,
   KEY `user_id_index` (`user_id`) USING BTREE,
@@ -164,7 +170,8 @@ CREATE TABLE `doc_module` (
   `sort` int(10) NOT NULL DEFAULT '0' COMMENT '模块排序',
   `creater_id` int(10) NOT NULL COMMENT '创建者id',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `encode_id` (`encode_id`),
   KEY `project_id` (`project_id`) USING BTREE,
@@ -193,7 +200,8 @@ CREATE TABLE `doc_project` (
   `status` tinyint(3) NOT NULL COMMENT '项目状态',
   `creater_id` int(10) NOT NULL COMMENT '创建者id',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `encode_id` (`encode_id`),
   KEY `user_id` (`creater_id`),
@@ -225,8 +233,9 @@ CREATE TABLE `doc_project_log` (
   `object_name` varchar(20) NOT NULL COMMENT '操作对象',
   `object_id` int(10) NOT NULL COMMENT '操作对象id',
   `content` text NOT NULL COMMENT '操作内容',
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `object_id` (`object_id`),
@@ -250,7 +259,8 @@ CREATE TABLE `doc_template` (
   `status` tinyint(3) NOT NULL COMMENT '模板状态',
   `creater_id` int(10) NOT NULL COMMENT '创建者id',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `project_id` (`project_id`),
   UNIQUE KEY `encode_id` (`encode_id`),
@@ -279,7 +289,8 @@ CREATE TABLE `doc_user` (
   `ip` varchar(250) NOT NULL DEFAULT '' COMMENT '注册ip',
   `location` varchar(255) NOT NULL DEFAULT '' COMMENT 'IP地址',
   `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`),
@@ -307,7 +318,8 @@ CREATE TABLE `doc_version` (
   `remark` varchar(250) NOT NULL DEFAULT '' COMMENT '备注信息',
   `status` tinyint(3) NOT NULL COMMENT '版本状态',
   `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+
   PRIMARY KEY (`id`,`encode_id`),
   UNIQUE KEY `encode_id` (`encode_id`),
   KEY `project_id` (`project_id`)

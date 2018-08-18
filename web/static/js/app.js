@@ -84,6 +84,18 @@ $("[type='reset']").click(function () {
     resetForm();
 });
 
+// 播放声音
+function playVoice(){
+    var $dom=$('#js_notifyVoice');
+    var src = '/assets/sound/notify.mp3';
+    // IE以外的其它浏览器用HTML5处理声音
+    if($dom.length){
+        $dom[0].play();
+    }else{
+        $('<audio>',{src:src, id:'js_notifyVoice'}).appendTo('body')[0].play();
+    }
+}
+
 /**
  * iframe模态框
  */

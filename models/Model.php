@@ -118,6 +118,8 @@ class Model extends \yii\db\ActiveRecord
      */
     public function getLocation($ip = null)
     {
+
+        return '';
         if(!$ip){
 
             $ip = Yii::$app->request->userIP;

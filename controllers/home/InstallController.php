@@ -128,10 +128,10 @@ class InstallController extends PublicController
                 // 将初始sql文件里的表前缀替换成表单输入的自定义前缀
                 $sql = str_replace('doc_', $step2['prefix'], $sql);
 
-                // 执行多条sql语句
-                $result = $connection->createCommand($sql)->execute();
+                try {
 
-                if($result >= 0){
+                    // 执行多条sql语句
+                    $connection->createCommand($sql)->execute();
 
                     // 将数据库信息写入配置文件
                     $db = ['class' => 'yii\db\Connection'] + $db;
@@ -148,9 +148,10 @@ class InstallController extends PublicController
 
                     return ['status' => 'success', 'callback' => url('home/install/step3')];
 
-                }
+                } catch (Exception $e) {
+                    return ['status' => 'error', 'message' => '数据库初始化安装失败，' . $e->getMessage()];
 
-                return ['status' => 'error', 'message' => '数据库初始化安装失败，请检查runtime/install/db.sql文件是否完整'];
+                }
 
             }
 
