@@ -226,7 +226,7 @@ class InstallController extends PublicController
     }
 
     /**
-     * 安装步骤四，显示按照过程
+     * 安装步骤四，显示安装过程
      * @return string|\yii\web\Response
      */
     public function actionStep4()
