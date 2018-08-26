@@ -270,23 +270,23 @@ class InstallController extends PublicController
 
         if (is_readable ($dirName)) {
 
-            $chmod = '可读,';
+            $chmod = '可读、';
 
         }
 
         if (is_writable ($dirName)) {
 
-            $chmod .= '可写,';
+            $chmod .= '可写、';
 
         }
 
         if (is_executable ($dirName)) {
 
-            $chmod .= '可执行,';
+            $chmod .= '可执行、';
 
         }
 
-        return trim($chmod, ',');
+        return trim($chmod, '、');
 
     }
 
