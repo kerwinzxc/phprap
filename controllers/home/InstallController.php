@@ -2,12 +2,11 @@
 
 namespace app\controllers\home;
 
-use app\models\Project;
-use app\models\project\StoreProject;
 use Yii;
 use yii\db\Exception;
 use yii\web\Response;
 use app\models\User;
+use app\models\project\StoreProject;
 
 class InstallController extends PublicController
 {
