@@ -44,15 +44,15 @@ class InstallController extends PublicController
 
         $chmods = [
             'runtime' => [
-                'all_chmod' => $this->get_chmod(Yii::getAlias("@runtime")),
+                'all_chmod' => $this->getChmodLabel(Yii::getAlias("@runtime")),
                 'is_writable' => is_writable(Yii::getAlias("@runtime")),
             ],
             'runtime/install' => [
-                'all_chmod' => $this->get_chmod(Yii::getAlias("@runtime") . '/install'),
+                'all_chmod' => $this->getChmodLabel(Yii::getAlias("@runtime") . '/install'),
                 'is_writable' => is_writable(Yii::getAlias("@runtime") . '/install'),
             ],
             'configs/db.php' => [
-                'all_chmod' => $this->get_chmod(Yii::getAlias("@app") . '/configs/db.php'),
+                'all_chmod' => $this->getChmodLabel(Yii::getAlias("@app") . '/configs/db.php'),
                 'is_writable' => is_writable(Yii::getAlias("@app") . '/configs/db.php'),
             ],
         ];
@@ -227,7 +227,7 @@ class InstallController extends PublicController
     }
 
     /**
-     * 安装步骤四
+     * 安装步骤四，显示按照过程
      * @return string|\yii\web\Response
      */
     public function actionStep4()
@@ -269,7 +269,7 @@ class InstallController extends PublicController
     }
 
     // 获取权限
-    private function get_chmod($dirName){
+    private function getChmodLabel($dirName){
 
         if (is_readable ($dirName)) {
 

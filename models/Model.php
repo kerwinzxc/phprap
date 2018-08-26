@@ -61,7 +61,7 @@ class Model extends \yii\db\ActiveRecord
      */
     public function createEncodeId()
     {
-        return mt_rand(1000, 9999) . date('His');
+        return date('Ymds').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
     }
 
     /**

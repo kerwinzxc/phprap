@@ -16,7 +16,7 @@
                     <div class="opt-btn">
 
                         {{if $project->hasRule('project', 'update')}}
-                        <a href="javascript:void(0);" class="btn hidden-xs btn-sm btn-success js_addProjectBtn mr-2" data-toggle="tooltip" data-placement="bottom" data-modal="#js_addProjectModal" data-title="编辑项目" data-height="250" data-src="{{url('home/project/update', ['id' => $project->encode_id])}}"><i class="fa fa-fw fa-edit"></i>编辑</a>
+                        <a href="javascript:void(0);" class="btn hidden-xs btn-sm btn-success js_addProjectBtn mr-2" data-toggle="tooltip" data-placement="bottom" data-modal="#js_popModal" data-title="编辑项目" data-height="250" data-src="{{url('home/project/update', ['id' => $project->encode_id])}}"><i class="fa fa-fw fa-edit"></i>编辑</a>
                         {{/if}}
 
                         <a href="javascript:void(0);" class="btn hidden-xs btn-sm btn-info mr-2 js_copyUrl" data-clipboard-text="{{$project->getUrl(true)}}"  data-toggle="tooltip" data-title="复制项目地址" data-placement="bottom"><i class="fa fa-fw fa-copy"></i>复制</a>
@@ -142,30 +142,6 @@
 <hr>
 <p class="text-center">{{config('copyright')}}</p>
 
-<!-- 编辑项目模态框 -->
-<div class="modal fade" id="js_addProjectModal" tabindex="-9" role="dialog">
-    <div class="modal-dialog" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">编辑项目</h4>
-            </div>
-            <div class="modal-body">
-
-                <iframe id="js_addProjectIframe" scrolling="no" src=""></iframe>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary js_submit">确认</button>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 
 <script src="https://cdn.bootcss.com/clipboard.js/1.6.1/clipboard.min.js"></script>
 
