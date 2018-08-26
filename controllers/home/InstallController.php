@@ -11,8 +11,6 @@ use app\models\project\StoreProject;
 class InstallController extends PublicController
 {
 
-    public $tables = [];
-
     public function beforeAction($action)
     {
 
